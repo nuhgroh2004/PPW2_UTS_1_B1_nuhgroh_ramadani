@@ -2,6 +2,9 @@
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
+
+use App\Http\Controllers\BukuController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +22,5 @@ Route::get('/', function () {
 
 
 Route::get('/posts/index', [PostController::class, 'index']);
+
+Route::get('/buku/index', [BukuController::class, 'index']);
