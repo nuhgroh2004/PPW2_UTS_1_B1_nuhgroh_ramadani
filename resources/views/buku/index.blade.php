@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+    <a href="{{ route('buku.create') }}" class="btn btn-primary float-end">Tambah Buku</a>
     <table class="table">
         <thead class="table-light">
             <tr>
@@ -21,13 +22,22 @@
         <tbody>
             @foreach($data_buku as $index => $Buku)
             <tr>
-                <td>{{$Buku->id}}</td>
+                <td>{{ $loop->iteration }}</td>
                 <td>{{$Buku->judul}}</td>
                 <td>{{$Buku->penulis}}</td>
                 <td>Rp. {{number_format($Buku->harga,2,',','.')}}</td>
                 <td>{{ $Buku->tahun_terbit instanceof \DateTime ?
                 $Buku->tahun_terbit->format('d/m/y') : $Buku->tahun_terbit }}</td>
-            </tr>
+                <td>
+                    <form action = "{{ route('buku.destroy', $Buku->id) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button onclick="return confirm('Yakin mau dihapus')" type="submit" class="btn btn-danger">Hapus</button>
+                    </form>
+                </td>
+                <td>
+                    <a href="{{ route('buku.edit', $Buku->id) }}" class="btn btn-primary float-end">Update</a>
+                </td>
             @endforeach
         </tbody>
       </table>
