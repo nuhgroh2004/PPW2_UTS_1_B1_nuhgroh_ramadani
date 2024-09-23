@@ -4,31 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Tambah Buku</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-
-        <h4>tambah buku</h4>
-
+    <div class="container mt-5">
+        <h4 class="mb-4">Tambah Buku</h4>
         <form method="post" action="{{Route('buku.store')}}">
 
             @csrf
-
-            <div>judul<input type="text" name="judul"></div>
-
-            <div>penulis<input type="text" name="penulis"></div>
-
-            <div>harga<input type="text" name="harga"></div>
-
-            <div>tahun_terbit<input type="date" name="tahun_terbit"></div>
-
-            <button type="submit">simpan</button>
-
-            <a href="{{Route('buku.index')}}">kembali</a>
-
+            <div class="mb-3">
+                <label for="judul" class="form-label">Judul</label>
+                <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan judul buku">
+            </div>
+            <div class="mb-3">
+                <label for="penulis" class="form-label">Penulis</label>
+                <input type="text" class="form-control" id="penulis" name="penulis" placeholder="Masukkan nama penulis">
+            </div>
+            <div class="mb-3">
+                <label for="harga" class="form-label">Harga</label>
+                <input type="text" class="form-control" id="harga" name="harga" placeholder="Masukkan harga buku">
+            </div>
+            <div class="mb-3">
+                <label for="tahun_terbit" class="form-label">Tahun Terbit</label>
+                <input type="date" class="form-control" id="tahun_terbit" name="tahun_terbit">
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+            <a href="{{Route('buku.index')}}" class="btn btn-secondary">Kembali</a>
         </form>
-
     </div>
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

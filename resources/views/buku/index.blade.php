@@ -7,8 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-    <a href="{{ route('buku.create') }}" class="btn btn-primary float-end">Tambah Buku</a>
-    <table class="table">
+    <table class="table mt-3">
         <thead class="table-light">
             <tr>
                 <th>id</th>
@@ -16,11 +15,13 @@
                 <th>Penerbit</th>
                 <th>harga</th>
                 <th>Tahun Terbit</th>
-                <th>aksi</th>
+                <th  class="text-center">Hapus</th>
+                <th  class="text-center">Update</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($data_buku as $index => $Buku)
+{{--  --}}
+            @foreach($data_buku as $index => $Buku){{-- foreach digunakan untuk iterasii perulangan melalui data buku --}}
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{$Buku->judul}}</td>
@@ -28,20 +29,22 @@
                 <td>Rp. {{number_format($Buku->harga,2,',','.')}}</td>
                 <td>{{ $Buku->tahun_terbit instanceof \DateTime ?
                 $Buku->tahun_terbit->format('d/m/y') : $Buku->tahun_terbit }}</td>
-                <td>
+                <td  class="text-center">
                     <form action = "{{ route('buku.destroy', $Buku->id) }}" method="post">
                         @csrf
                         @method('delete')
                         <button onclick="return confirm('Yakin mau dihapus')" type="submit" class="btn btn-danger">Hapus</button>
                     </form>
                 </td>
-                <td>
-                    <a href="{{ route('buku.edit', $Buku->id) }}" class="btn btn-primary float-end">Update</a>
+                <td class="text-center">
+                    <a href="{{ route('buku.edit', $Buku->id) }}" class="btn btn-primary">Update</a>
                 </td>
             @endforeach
         </tbody>
       </table>
-
+    <div class="d-flex justify-content-center mt-3 mb-3">
+        <a href="{{ route('buku.create') }}" class="btn btn-primary">Tambah Buku</a>
+    </div>
     <div class="container mt-8">
         <div class="card shadow-sm border-0">
             <div class="card-header bg-primary text-white">

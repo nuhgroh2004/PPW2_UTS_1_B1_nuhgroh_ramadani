@@ -24,9 +24,7 @@ class BukuController extends Controller
         return view('buku.index', compact('data_buku', 'jumlah_buku', 'total_harga'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('buku.create');
@@ -74,6 +72,7 @@ class BukuController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         $buku = Buku::find($id);
         $buku->judul = $request->judul;
         $buku->penulis = $request->penulis;
@@ -92,7 +91,8 @@ class BukuController extends Controller
 
         $buku = Buku::find($id);
         $buku->delete();
-
+        
         return redirect('/buku/index');
+
     }
 }
